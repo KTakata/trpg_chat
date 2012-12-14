@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TrpgChat</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+<% if session[:user_id] %>
+<div align=right>
+  <div aling=right>Hello, <%= User.find(session[:user_id]).name -%>
+  <%= button_to 'Logout', logout_url, :method => :delete %></div>
+</div>
+<% end %>
+<hr>
+</head>
+<body>
+<%= yield %>
+</body></html>
