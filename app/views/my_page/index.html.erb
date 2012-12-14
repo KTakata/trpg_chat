@@ -1,8 +1,18 @@
 <div align=center><h1><%= image_tag "mypage.png",  alt: "MyPage" %></h1></div>
-現在進行中
-<table>
+参加中のセッション
+<table border=2>
   <tr>
+    <% @t_sessions.each do |t_session| -%>
     <td>
+      <%= t_session.system %>
+    </td>
+    <td>
+      <%= link_to t_session.scenario_name, "#" %>
+    </td>
+    <td>
+      <%= Player.find_by_t_session_id_and_user_id(t_session, @current_user).player_type #TODO:汚いので後で書き直す
+      %>
     </td>
   </tr>
+  <% end -%>
 </table>
