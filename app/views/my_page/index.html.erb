@@ -1,18 +1,46 @@
 <div align=center><h1><%= image_tag "mypage.png",  alt: "MyPage" %></h1></div>
-参加中のセッション
+<h2>参加中のセッション</h2>
+<% unless @open_sessions.empty? -%>
 <table border=2>
   <tr>
-    <% @t_sessions.each do |t_session| -%>
+    <% @open_sessions.each do |o_session| -%>
     <td>
-      <%= t_session.system %>
+      <%= o_session.system %>
     </td>
     <td>
-      <%= link_to t_session.scenario_name, "#" %>
+      <%= link_to o_session.scenario_name, "#" %>
     </td>
     <td>
-      <%= Player.find_by_t_session_id_and_user_id(t_session, @current_user).player_type #TODO:汚いので後で書き直す
+      <%= Player.find_by_t_session_id_and_user_id(o_session, @current_user).player_type #TODO:汚いので後で書き直す
       %>
     </td>
   </tr>
   <% end -%>
 </table>
+<% else -%>
+参加中のセッションはありません
+<% end -%>
+
+<%= link_to "新しいセッションを開始する", "#" %>
+
+<h2>過去のセッション</h2>
+<% unless @closed_sessions.empty? -%>
+<table border=2>
+  <tr>
+    <% @closed_sessions.each do |c_session| -%>
+    <td>
+      <%= c_session.system %>
+    </td>
+    <td>
+      <%= link_to c_session.scenario_name, "#" %>
+    </td>
+    <td>
+      <%= Player.find_by_t_session_id_and_user_id(c_session, @current_user).player_type #TODO:汚いので後で書き直す
+      %>
+    </td>
+  </tr>
+  <% end -%>
+</table>
+<% else -%>
+過去に参加した参加中のセッションはありません
+<% end -%>
