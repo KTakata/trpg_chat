@@ -1,8 +1,14 @@
 TrpgChat::Application.routes.draw do
-  get "my_page/index"
 
-  get "t_session/index"
-  
+  controller :my_page do
+    get 'my_page/index' => :index
+  end
+
+  controller :t_session do
+    get 't_session/index' => :index
+    get 't_session/new' => :new
+  end
+
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

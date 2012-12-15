@@ -21,7 +21,7 @@
 参加中のセッションはありません
 <% end -%>
 
-<%= link_to "新しいセッションを開始する", "#" %>
+<p><%= link_to "新しいセッションを開始する", t_session_new_path %></p>
 
 <h2>過去のセッション</h2>
 <% unless @closed_sessions.empty? -%>
