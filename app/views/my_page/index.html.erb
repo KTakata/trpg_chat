@@ -8,7 +8,7 @@
       <%= o_session.system %>
     </td>
     <td>
-      <%= link_to o_session.scenario_name, "#" %>
+      <%= link_to o_session.scenario_name, t_session_path(o_session.id) %>
     </td>
     <td>
       <%= Player.find_by_t_session_id_and_user_id(o_session, @current_user).player_type #TODO:汚いので後で書き直す
@@ -21,7 +21,7 @@
 参加中のセッションはありません
 <% end -%>
 
-<p><%= link_to "新しいセッションを開始する", t_session_new_path %></p>
+<p><%= link_to "新しいセッションを開始する", new_t_session_path %></p>
 
 <h2>過去のセッション</h2>
 <% unless @closed_sessions.empty? -%>
@@ -32,7 +32,7 @@
       <%= c_session.system %>
     </td>
     <td>
-      <%= link_to c_session.scenario_name, "#" %>
+      <%= link_to c_session.scenario_name, t_session_path(c_session.id) %>
     </td>
     <td>
       <%= Player.find_by_t_session_id_and_user_id(c_session, @current_user).player_type #TODO:汚いので後で書き直す

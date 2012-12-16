@@ -1,19 +1,15 @@
 TrpgChat::Application.routes.draw do
 
-  controller :my_page do
-    get 'my_page/index' => :index
-  end
-
-  controller :t_session do
-    get 't_session/index' => :index
-    get 't_session/new' => :new
-  end
-
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
   end
+
+  get "my_page" => "my_page#index"
+
+  resources :t_session, path: 't_session', only: [:index, :new, :show]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

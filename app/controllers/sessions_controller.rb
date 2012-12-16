@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if user = User.find_by_email(params[:email])
       if user.password == params[:password]
         session[:user_id] = user.id
-        redirect_to my_page_index_url
+        redirect_to my_page_path
       end
     else
       redirect_to login_url, :notice => "Invalid!"
