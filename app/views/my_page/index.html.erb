@@ -5,7 +5,7 @@
   <tr>
     <% @open_sessions.each do |o_session| -%>
     <td>
-      <%= o_session.system %>
+      <%= o_session.system_name %>
     </td>
     <td>
       <%= link_to o_session.scenario_name, t_session_path(o_session.id) %>
@@ -29,7 +29,7 @@
   <tr>
     <% @closed_sessions.each do |c_session| -%>
     <td>
-      <%= c_session.system %>
+      <%= c_session.system_name %>
     </td>
     <td>
       <%= link_to c_session.scenario_name, t_session_path(c_session.id) %>

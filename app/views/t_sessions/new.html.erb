@@ -1,11 +1,9 @@
 <h1>新しいセッションを作成する</h1>
 
 <%= form_for @t_session do |f| %>
-<ul>
-  <li><%= f.label :system %><%= f.text_field :system %></li>
-  <li><%= f.label :scenario_name %><%= f.text_field :scenario_name %></li>
-  <li><%= f.submit %></li>
-</ul>
+  <p><%= f.label :system_name %><%= f.text_field :system_name %></p>
+  <p><%= f.label :scenario_name %><%= f.text_field :scenario_name %></p>
+  <p><%= f.submit "セッションを作成" %></p>
 <% end %>
 
 <%= link_to "MyPageに戻る", my_page_path %>
