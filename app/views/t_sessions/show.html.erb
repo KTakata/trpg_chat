@@ -1,1 +1,17 @@
 <h1><%= @session.scenario_name %></h1>
+
+<p>
+  状態:
+  <%= @session.t_session_status #TODO:日本語化
+   -%>
+</p>
+
+<table border=2>
+  <tr>
+    <td>プレイヤー</td><td>ロール</td>
+  </tr>
+  <% @players.each do |player| -%>
+  <tr>
+    <td><%= player.user.nick_name -%></td><td><%= player.player_type -%></td>
+  </tr>
+  <% end -%>

@@ -7,7 +7,8 @@ class TSessionsController < ApplicationController
   end
 
   def show
-  	@session = TSession.find(params[:id])
+    @session = TSession.find(params[:id])
+    @players = Player.where(t_session_id: @session.id)
   end
 
   def create
