@@ -12,6 +12,7 @@
   </tr>
   <% @players.each do |player| -%>
   <tr>
-    <td><%= player.user.nick_name -%></td><td><%= player.player_type -%></td>
+    <td><%= player.user.nick_name -%></td><td><%= player.player_type -%></td><td><%= button_to "募集を開始する", action: "start_recruit" %></td>
+    <% if player.player_type == "Game Master"-%><td><%= link_to "削除する", t_session_path, method: :delete %></td><% end -%>
   </tr>
   <% end -%>
