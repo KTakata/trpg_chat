@@ -8,7 +8,7 @@ TrpgChat::Application.routes.draw do
 
   get "my_page" => "my_page#index"
 
-  resources :t_session, path: 't_session', only: [:index, :new, :show]
+  resources :t_sessions, path: 't_session', only: [:index, :new, :show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
