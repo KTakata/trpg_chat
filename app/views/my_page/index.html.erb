@@ -1,4 +1,7 @@
 <div align=center><h1><%= image_tag "mypage.png",  alt: "MyPage" %></h1></div>
+
+<p><%= link_to "新しいセッションを開始する", new_t_session_path %></p>
+
 <h2>新規セッション</h2>
 <% unless @new_sessions.empty? -%>
   <%= render partial: 'show_session', locals: {sessions: @new_sessions} %>
@@ -19,8 +22,6 @@
 <% else -%>
 参加中のセッションはありません
 <% end -%>
-
-<p><%= link_to "新しいセッションを開始する", new_t_session_path %></p>
 
 <h2>過去のセッション</h2>
 <% unless @closed_sessions.empty? -%>
