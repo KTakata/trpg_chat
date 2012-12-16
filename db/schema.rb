@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121216200028) do
+ActiveRecord::Schema.define(:version => 20121216204535) do
 
   create_table "battle_maps", :force => true do |t|
     t.integer  "t_session_id"
@@ -68,11 +68,10 @@ ActiveRecord::Schema.define(:version => 20121216200028) do
 
   create_table "t_sessions", :force => true do |t|
     t.string   "system_name"
-    t.boolean  "start_flag"
-    t.boolean  "end_flag"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "scenario_name"
+    t.string   "t_session_status"
   end
 
   create_table "users", :force => true do |t|
