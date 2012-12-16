@@ -9,15 +9,14 @@ class TSession < ActiveRecord::Base
   def create_sessions(attribute, current_user)
     current_player = Player.new(user_id: current_user.id)
     transaction do
-      self.start_flag = false
-      self.end_flag = false
+      self.t_session_status = "new"
       self.save!
       current_player.t_session_id = self.id
       current_player.player_type = "Game Master"
       current_player.save!
     end
     rescue => e
-    flash[:error] = "Can not create trpg session"
+    flash[:error] = "Can not create trpg session" #TODO:flash実装
     redirect_to new_t_session_path
   end
 end
