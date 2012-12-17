@@ -13,6 +13,7 @@ class TSession < ActiveRecord::Base
       self.save!
       current_player.t_session_id = self.id
       current_player.player_type = "Game Master"
+      current_player.player_status = "join"
       current_player.save!
     end
     rescue => e
