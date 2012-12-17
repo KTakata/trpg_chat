@@ -5,7 +5,7 @@ class RemoveStartFlagAndEndFlagFromTSession < ActiveRecord::Migration
   end
 
   def down
-    add_colmn :t_sessions, :start_flag, :boolean
-    add_colmn :t_sessions, :end_flag, :boolean
+    add_column :t_sessions, :end_flag, :boolean
+    add_column :t_sessions, :start_flag, :boolean
   end
 end
