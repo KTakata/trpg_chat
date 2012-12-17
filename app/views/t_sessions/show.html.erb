@@ -21,6 +21,10 @@
   <% end -%>
 </table>
 
+<% #GMのみがセッションを開始できる %>
+<% if @current_player.player_type == "Game Master" && @t_session.players.count >= 2 -%>
+  <%= render partial: '_start_t_session' %>
+<% end -%>
 <% #GMのみがプレイヤーを選択できる %>
 <% if @current_player.player_type == "Game Master"-%>
   <%= render partial: 'select_player' %>
