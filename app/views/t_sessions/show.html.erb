@@ -6,13 +6,18 @@
    -%>
 </p>
 
+<% if @t_session.t_session_status == "new" && player.player_type == "Game Master" -%>
+  <%= button_to "募集を開始する", action: "start_recruit" %>
+<% end -%>
+
 <table border=2>
   <tr>
     <td>プレイヤー</td><td>ロール</td>
   </tr>
   <% @players.each do |player| -%>
   <tr>
-    <td><%= player.user.nick_name -%></td><td><%= player.player_type -%></td><td><%= button_to "募集を開始する", action: "start_recruit" %></td>
-    <% if player.player_type == "Game Master"-%><td><%= link_to "削除する", t_session_path, method: :delete %></td><% end -%>
+    <td><%= player.user.nick_name -%></td><td><%= player.player_type -%></td>
   </tr>
   <% end -%>
+</table>
+
