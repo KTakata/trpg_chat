@@ -21,3 +21,11 @@
   <% end -%>
 </table>
 
+<% #GMのみがプレイヤーを選択できる %>
+<% if @current_player.player_type == "Game Master"-%>
+  <%= render partial: 'select_player' %>
+
+  <%= link_to "セッションを削除する", t_session_path, method: :delete %>
+<% end -%>
+
+<% #TODO:ログダウンロード(場所も考える) %>
