@@ -10,5 +10,5 @@ progress_session = TSession.create!(system_name: "ソード・ワールド2.0", 
 past_session = TSession.create!(system_name: "アリアンロッドRPG 2E", scenario_name: "テストシナリオ4", t_session_status: "end")
 Player.create!(user_id: user.id, t_session_id: new_session.id, player_type: "Game Master")
 Player.create!(user_id: user.id, t_session_id: recruitment_session.id, player_type: "Game Master")
-Player.create!(user_id: user.id, t_session_id: progress_session.id, player_type: "Player 1st")
-Player.create!(user_id: user.id, t_session_id: past_session.id, player_type: "Player 3rd")
+Player.create!(user_id: user.id, t_session_id: progress_session.id, player_type: "Game Master")
+Player.create!(user_id: user.id, t_session_id: past_session.id, player_type: "Game Master")
