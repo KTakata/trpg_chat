@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 class TSessionsController < ApplicationController
-before_filter :find_current_player, only: ['join_request', 'cancel_request']
 
   before_filter :find_current_player, only: ['join_request', 'cancel_request']
 
