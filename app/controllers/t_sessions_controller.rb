@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class TSessionsController < ApplicationController
+before_filter :find_current_player, only: ['join_request', 'cancel_request']
   def index
   end
 
@@ -44,13 +45,24 @@ class TSessionsController < ApplicationController
 
   #ここではセッションに参加希望するユーザーを設定する
   def join_request
-    t_session = TSession.find(params[:id])
-    player = Player.find_by_t_session_id_and_user_id(t_session.id, @current_user.id)
-    Player.create!(user_id: @current_user.id, t_session_id: t_session.id, player_status: "rsvp") unless player
-    if player.player_status == nil
-      player.player_status = "rsvp"
-      player.save!
+    Player.create!(user_id: @current_user.id, t_session_id: @t_session.id, player_status: "rsvp") unless @player
+    if @player.player_status == nil
+      @player.player_status = "rsvp"
+      @player.save!
     end
-    redirect_to  t_session_path(t_session.id)
+    redirect_to  t_session_path(@t_session.id)
+  end
+
+  def cancel_request
+    raise "Unkown current player" unless @player
+    @player.player_status = nil
+    @player.save!
+    redirect_to  t_session_path(@t_session.id)
+  end
+
+  private
+  def find_current_player
+    @t_session = TSession.find(params[:id])
+    @player = Player.find_by_t_session_id_and_user_id(@t_session.id, @current_user.id)
   end
 end
