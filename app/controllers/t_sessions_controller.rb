@@ -14,7 +14,7 @@ class TSessionsController < ApplicationController
     @current_player = Player.find_by_user_id_and_t_session_id(@current_user.id, @t_session.id)
     @join_players_no = []
     @join_players.each do |player|
-      @join_players_no < player.player_status[7..7] if player.player_status
+      @join_players_no << player.player_status[7..7] if player.player_status
     end
   end
 

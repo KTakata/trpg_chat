@@ -11,7 +11,7 @@
 
 <h2>募集中のセッション</h2>
 <% unless @recruitment_sessions.empty? -%>
-  <%= render partial: 'show_session', locals: {sessions: @recruitment_sessions} %>
+  <%= render partial: 'show_recruitment_session', locals: {sessions: @recruitment_sessions} %>
 <% else -%>
 募集中のセッションはありません
 <% end -%>
