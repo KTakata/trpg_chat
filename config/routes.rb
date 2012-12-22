@@ -13,6 +13,7 @@ TrpgChat::Application.routes.draw do
     post 't_session/:id/start_recruit', action: :start_recruit
     post 't_session/:id/join_request', action: :join_request
     post 't_session/:id/cancel_request', action: :cancel_request
+    post 't_session/set_player', action: :set_player
   end
 
   # The priority is based upon order of creation:

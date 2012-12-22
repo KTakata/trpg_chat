@@ -61,6 +61,16 @@ before_filter :find_current_player, only: ['join_request', 'cancel_request']
     redirect_to  t_session_path(@t_session.id)
   end
 
+  #ここではセッションに参加するユーザーを設定
+  def set_player
+    t_session = TSession.find(params[:t_session_id])
+    raise 'このセッションは現在ユーザーの参加を受け付けていません' unless t_session.t_session_status == 'recruit'
+    rsvp_player = Player.find_by_id(params[:player_id])
+    rsvp_player.set_status('join')
+    redirect_to t_session_path(t_session.id)
+  end
+
+
   private
   def find_current_player
     @t_session = TSession.find(params[:id])

@@ -1,0 +1,19 @@
+セッションに参加希望のユーザー一覧
+<% #TODO:playerに一言メッセージカラムを追加する %>
+<table>
+<% @rsvp_players.each do |player| %>
+  <tr>
+    <td><%= player.user.nick_name %></td>
+    <td><% #TODO:ひとことメッセージ =player.to_gm_message
+    %></td>
+    <td><%= button_to 'セッション参加プレイヤーに指定する' , {action: 'set_player', t_session_id: @t_session.id , player_type: player.player_type, player_id: player.id} %></td>
+  </tr>
+<% end %>
+</table>
+
+<%# if @join_players_no.empty? -%>
+  <%# @join_players_no.each do |no| %>
+  <% #TODO:link設定 %>
+    <%#= link_to "Player #{no}に設定する", action: 'set_player' %>
+  <%# end -%>
+<%# end -%>
