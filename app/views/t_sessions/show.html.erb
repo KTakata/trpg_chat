@@ -15,7 +15,22 @@
   </tr>
   <% @join_players.each do |player| -%>
   <tr>
-    <td><%= player.user.nick_name -%></td><td><%= player.player_type -%></td>
+    <td><%= player.user.nick_name -%></td>
+    <td>
+      <% if player.player_type -%>
+        <%= player.player_type -%>
+      <% else -%>
+        未決定
+      <% end -%>
+    </td>
+    <% if @current_player.player_type == 'Game Master' && player != @current_player -%>
+    <td>
+      プレイヤーNoの決定
+    </td>
+    <td>
+      <%= button_to '参加取り消し', {action: 'remove_player', t_session_id: @t_session.id , player_type: player.player_type, player_id: player.id} %>
+    </td>
+    <% end -%>
   </tr>
   <% end -%>
   <% if @current_player && @current_player.player_status == 'rsvp' -%>
