@@ -18,8 +18,9 @@ before_filter :find_current_player, only: ['join_request', 'cancel_request']
     @current_player = Player.find_by_user_id_and_t_session_id(@current_user.id, @t_session.id)
     @join_players_no = []
     @join_players.each do |player|
-      @join_players_no << player.player_status[7..7] if player.player_status
+      @join_players_no << player.player_type[7..7] if player.player_type && (player.player_type != 'Game Master')
     end
+    @total_playes = [1,2,3,4,5]
   end
 
   def create
@@ -78,6 +79,13 @@ before_filter :find_current_player, only: ['join_request', 'cancel_request']
     join_player = Player.find_by_id(params[:player_id])
     join_player.set_status('rsvp')
     join_player.set_player_no(nil)
+    redirect_to t_session_path(t_session.id)
+  end
+
+  def set_player_no
+    t_session = TSession.find(params[:id])
+    player = Player.find(params[:player_id])
+    player.set_player_no(params[:player_no])
     redirect_to t_session_path(t_session.id)
   end
 

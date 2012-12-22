@@ -14,5 +14,5 @@ Player.create!(user_id: user.id, t_session_id: progress_session.id, player_type:
 Player.create!(user_id: user.id, t_session_id: past_session.id, player_type: "Game Master", player_status: "join")
 
 user = User.create!(name: "test_user", nick_name: "Test Player", email: "test@player.com", password: "test")
-Player.create!(user_id: user.id, t_session_id: recruitment_session.id, player_type: "Player 1st", player_status: "rsvp")
+Player.create!(user_id: user.id, t_session_id: recruitment_session.id, player_type: "Player 1", player_status: "rsvp")
 

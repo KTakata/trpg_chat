@@ -25,7 +25,11 @@
     </td>
     <% if @current_player.player_type == 'Game Master' && player != @current_player -%>
     <td>
-      プレイヤーNoの決定
+      <% @total_playes.each do |player_number| -%>
+        <% if @join_players_no.select{|x| x == player_number.to_s}.empty? -%>
+          <%= button_to "プレイヤー#{player_number}に指定する", {action: 'set_player_no', player_no: player_number, player_id: player.id} %>
+        <% end -%>
+      <% end -%>
     </td>
     <td>
       <%= button_to '参加取り消し', {action: 'remove_player', t_session_id: @t_session.id , player_type: player.player_type, player_id: player.id} %>

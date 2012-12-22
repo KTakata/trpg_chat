@@ -7,4 +7,13 @@ class Player < ActiveRecord::Base
     self.player_status = status
     self.save!
   end
+
+  def set_player_no(no)
+    if no.nil?
+      self.player_type = nil
+    else
+      self.player_type = "Player #{no}"
+    end
+    self.save!
+  end
 end

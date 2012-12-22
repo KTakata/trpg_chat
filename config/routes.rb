@@ -15,6 +15,7 @@ TrpgChat::Application.routes.draw do
     post 't_session/:id/cancel_request', action: :cancel_request
     post 't_session/:id/remove_player', action: :remove_player
     post 't_session/set_player', action: :set_player
+    post 't_session/:id/set_player_no', action: :set_player_no
   end
 
   # The priority is based upon order of creation:
