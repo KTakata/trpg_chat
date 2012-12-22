@@ -1,25 +1,29 @@
 <h1><%= @t_session.scenario_name %></h1>
-
 <p>
   状態:
   <%= @t_session.t_session_status #TODO:日本語化
    -%>
 </p>
 
-<% if @t_session.t_session_status == "new" && player.player_type == "Game Master" -%>
-  <%= button_to "募集を開始する", action: "start_recruit" %>
+<% if @t_session.t_session_status == "new" && @current_player.player_type == "Game Master" -%>
+  <p><%= button_to "募集を開始する", action: "start_recruit" %></p>
 <% end -%>
 
 <table border=2>
   <tr>
     <td>プレイヤー</td><td>ロール</td>
   </tr>
-  <% @players.each do |player| -%>
+  <% @join_players.each do |player| -%>
   <tr>
     <td><%= player.user.nick_name -%></td><td><%= player.player_type -%></td>
   </tr>
   <% end -%>
 </table>
+
+<% #GM以外はセッションに参加表明できる %>
+<% if @current_player.player_type != "Game Master" && @t_session.t_session_status == "recruit" -%>
+<% # render partial: 'join_player' %>
+<% end -%>
 
 <% #GMのみがセッションを開始できる %>
 <% if @current_player.player_type == "Game Master" && @t_session.players.count >= 2 -%>
