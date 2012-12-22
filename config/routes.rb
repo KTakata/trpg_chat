@@ -11,6 +11,7 @@ TrpgChat::Application.routes.draw do
   controller :t_sessions do
     resources :t_sessions, path: 't_session', only: [:index, :new, :show, :create, :destroy]
     post 't_session/:id/start_recruit', action: :start_recruit
+    post 't_session/:id/join_request', action: :join_request
   end
 
   # The priority is based upon order of creation:

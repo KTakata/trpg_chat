@@ -41,4 +41,16 @@ class TSessionsController < ApplicationController
     t_session.save!
     redirect_to my_page_path
   end
+
+  #ここではセッションに参加希望するユーザーを設定する
+  def join_request
+    t_session = TSession.find(params[:id])
+    player = Player.find_by_t_session_id_and_user_id(t_session.id, @current_user.id)
+    Player.create!(user_id: @current_user.id, t_session_id: t_session.id, player_status: "rsvp") unless player
+    if player.player_status == nil
+      player.player_status = "rsvp"
+      player.save!
+    end
+    redirect_to  t_session_path(t_session.id)
+  end
 end

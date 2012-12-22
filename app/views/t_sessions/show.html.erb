@@ -18,11 +18,19 @@
     <td><%= player.user.nick_name -%></td><td><%= player.player_type -%></td>
   </tr>
   <% end -%>
+  <% if @current_player && @current_player.player_status = "rsvp" -%>
+  <tr>
+    <td><%= @current_user.nick_name -%></td><td>参加申請中</td>
+  </tr>
+  <% end -%>
 </table>
 
 <% #GM以外はセッションに参加表明できる %>
-<% if @current_player.nil? && @t_session.t_session_status == "recruit" -%>
-<% # render partial: 'join_player' %>
+<% if (@current_player.nil? && @t_session.t_session_status == "recruit") || (@current_player && @current_player.player_status.nil?) -%>
+  <p><%= button_to "募集希望！", action: "join_request" %></p>
+<% elsif @current_player.try(:player_status) == "rsvp" && @t_session.t_session_status == "recruit" -%>
+  <p><%= button_to "参加取り消し", action: "join_request" %></p>
+<% else -%>
 <% end -%>
 
 <% #GMのみがセッションを開始できる %>
