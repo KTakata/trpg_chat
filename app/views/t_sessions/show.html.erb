@@ -5,8 +5,8 @@
    -%>
 </p>
 
-<% if @t_session.t_session_status == "new" && @current_player.player_type == "Game Master" -%>
-  <p><%= button_to "募集を開始する", action: "start_recruit" %></p>
+<% if @t_session.t_session_status == 'new' && @current_player.player_type == 'Game Master' -%>
+  <p><%= button_to '募集を開始する', action: 'start_recruit' %></p>
 <% end -%>
 
 <table border=2>
@@ -18,7 +18,7 @@
     <td><%= player.user.nick_name -%></td><td><%= player.player_type -%></td>
   </tr>
   <% end -%>
-  <% if @current_player && @current_player.player_status == "rsvp" -%>
+  <% if @current_player && @current_player.player_status == 'rsvp' -%>
   <tr>
     <td><%= @current_user.nick_name -%></td><td>参加申請中</td>
   </tr>
@@ -26,22 +26,22 @@
 </table>
 
 <% #GM以外はセッションに参加表明できる %>
-<% if (@current_player.nil? && @t_session.t_session_status == "recruit") || (@current_player && @current_player.player_status.nil?) -%>
-  <p><%= button_to "募集希望！", action: "join_request" %></p>
-<% elsif @current_player.try(:player_status) == "rsvp" && @t_session.t_session_status == "recruit" -%>
+<% if (@current_player.nil? && @t_session.t_session_status == 'recruit') || (@current_player && @current_player.player_status.nil?) -%>
+  <p><%= button_to '募集希望！', action: 'join_request' %></p>
+<% elsif @current_player.try(:player_status) == 'rsvp' && @t_session.t_session_status == 'recruit' -%>
   <p><%= button_to "参加取り消し", action: "cancel_request" %></p>
 <% else -%>
 <% end -%>
 
 <% #GMのみがセッションを開始できる %>
-<% if @current_player.try(:player_type) == "Game Master" && @t_session.players.count >= 2 -%>
+<% if @current_player.try(:player_type) == 'Game Master' && @t_session.players.count >= 2 -%>
   <%= render partial: 'start_t_session' %>
 <% end -%>
 <% #GMのみがプレイヤーを選択できる %>
-<% if @current_player.try(:player_type) == "Game Master" -%>
+<% if @current_player.try(:player_type) == 'Game Master' -%>
   <%= render partial: 'select_player' %>
 
-  <%= link_to "セッションを削除する", t_session_path, method: :delete %>
+  <%= link_to 'セッションを削除する', t_session_path, method: :delete %>
 <% end -%>
 
 <% #TODO:ログダウンロード(場所も考える) %>
