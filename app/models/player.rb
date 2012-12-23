@@ -2,6 +2,7 @@ class Player < ActiveRecord::Base
   attr_accessible :player_type, :t_session_id, :user_id, :player_status, :character_id
   belongs_to :user
   belongs_to :t_session
+  belongs_to :character
 
   def set_status(status)
     self.player_status = status

@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20121223144650) do
 
   create_table "characters", :force => true do |t|
     t.string   "player_id"
-    t.string   "type"
+    t.string   "chara_type"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

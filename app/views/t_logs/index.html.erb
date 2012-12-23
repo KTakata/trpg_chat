@@ -1,2 +1,17 @@
 T Logs index
+<% binding.pry %>
+<% if @current_player.character_id != 0 && !@current_player.character.name -%>
+<p>キャラクターの名前を設定してください<p>
+<% end -%>
+
+<table>
+  <tr>
+    <% @t_logs.each do |log| -%>
+      <td>
+      	<% log.user.nick_name if log.user -%>
+      </td>
+      <td><%= log.body %></td>
+    <% end -%>
+  </tr>
+</table>
 
