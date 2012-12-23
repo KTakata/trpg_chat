@@ -67,8 +67,11 @@
 <% if @current_player.try(:player_type) == 'Game Master' -%>
   <%= render partial: 'select_player' %>
 
-  <%= link_to 'セッションを削除する', t_session_path, method: :delete %>
+  <%# link_to 'セッションを削除する', t_session_path, method: :delete %>
 <% end -%>
 
+<% if @t_session.t_session_status == "progress" -%>
+<%= link_to "セッションを始める", t_logs_path(t_session_id: @t_session.id) %>
+<% end -%>
 <%= link_to 'マイページに戻る', my_page_path %>
 <% #TODO:ログダウンロード(場所も考える) %>

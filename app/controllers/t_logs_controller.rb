@@ -18,7 +18,7 @@ class TLogsController < ApplicationController
     end
     #セッションのステータスを変更
     t_session.first_create(params[:t_session_id])
-    redirect_to t_logs_path(t_session_id: params[:t_session_id])
+    redirect_to t_logs_path(t_session_id: t_session.id)
   end
 
   private
