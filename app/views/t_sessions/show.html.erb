@@ -54,8 +54,15 @@
 
 <% #GMのみがセッションを開始できる %>
 <% if @current_player.try(:player_type) == 'Game Master' && @t_session.players.count >= 2 -%>
-  <%= render partial: 'start_t_session' %>
+<% #TODO: button_to => {action: 'new', controller: 't_logs'で行けないのか？ %>
+  <% @t_session.players.each do |player| -%>
+     <% @t_session_start_flag = false if player.player_type.nil? -%>
+  <% end -%>
+  <% if @t_session_start_flag == true %>
+    <%= button_to "セッションを開始する", {action: 'create', controller: 't_logs', t_session_id: @t_session.id} %>
+  <% end -%>
 <% end -%>
+
 <% #GMのみがプレイヤーを選択できる %>
 <% if @current_player.try(:player_type) == 'Game Master' -%>
   <%= render partial: 'select_player' %>

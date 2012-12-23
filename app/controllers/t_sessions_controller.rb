@@ -20,6 +20,7 @@ class TSessionsController < ApplicationController
       @join_players_no << player.player_type[7..7] if player.player_type && (player.player_type != 'Game Master')
     end
     @total_playes = [1,2,3,4,5]
+    @t_session_start_flag = true
   end
 
   def create

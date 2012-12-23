@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TSession < ActiveRecord::Base
   attr_accessible :t_session_status, :system_name, :scenario_name
   has_many :players
@@ -19,5 +20,17 @@ class TSession < ActiveRecord::Base
     rescue => e
     flash[:error] = "Can not create trpg session" #TODO:flash実装
     redirect_to new_t_session_path
+  end
+
+  def first_create(attribute)
+    transaction do
+      self.t_session_status = "progress"
+      self.save!
+      t_log = TLog.new(t_session_id: attribute, body: 'セッションを開始しました')
+      t_log.save!
+    end
+    rescue => e
+    flash[:error] = "Can not start trpg session" #TODO:flash実装
+    redirect_to t_session_path(self.id)
   end
 end
