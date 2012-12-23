@@ -24,7 +24,7 @@ class TLogsController < ApplicationController
   private
 
   def find_t_session
-    @t_session = TSession.find_by_id[params[:id]]
+    @t_session = TSession.find_by_id(params[:t_session_id])
     raise 'Unknown TSession' unless @t_session
   end
 
