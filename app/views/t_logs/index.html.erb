@@ -1,17 +1,26 @@
-T Logs index
-<% binding.pry %>
+<h1>T Logs index</h1>
 <% if @current_player.character_id != 0 && !@current_player.character.name -%>
 <p>キャラクターの名前を設定してください<p>
 <% end -%>
+<div id="floor">
+  <% #左画面 -%>
+  <div id="left-box">
 
-<table>
-  <tr>
-    <% @t_logs.each do |log| -%>
-      <td>
-      	<% log.user.nick_name if log.user -%>
-      </td>
-      <td><%= log.body %></td>
-    <% end -%>
-  </tr>
-</table>
+  </div>
+  <% #左画面ここまで -%>
 
+  <% #右画面 -%>
+  <div id="right-box">
+  <table>
+    <tr>
+      <% @t_logs.each do |log| -%>
+        <td valign="top", width="100px">
+          <% log.user.nick_name if log.user -%>
+        </td>
+        <td><%= log.body %></td>
+      <% end -%>
+    </tr>
+  </table>
+  </div>
+  <% #右画面ここまで -%>
+</div>

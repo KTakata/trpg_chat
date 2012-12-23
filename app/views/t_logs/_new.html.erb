@@ -1,0 +1,7 @@
+new
+
+<% #TODO:t_log_newに移動 %>
+<%= form_for @t_log do |f| -%>
+  <%= f.hidden_field :t_session_id, value: @t_session.id -%>
+  <p><%= f.submit "セッションを作成" %></p>
+ <% end -%>
