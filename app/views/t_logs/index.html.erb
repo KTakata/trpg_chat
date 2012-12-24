@@ -5,22 +5,13 @@
 <div id="floor">
   <% #左画面 -%>
   <div id="left-box">
-
+    <%= render partial: 'trpg_form' %>
   </div>
   <% #左画面ここまで -%>
 
   <% #右画面 -%>
   <div id="right-box">
-  <table>
-    <tr>
-      <% @t_logs.each do |log| -%>
-        <td valign="top", width="100px">
-          <% log.user.nick_name if log.user -%>
-        </td>
-        <td><%= log.body %></td>
-      <% end -%>
-    </tr>
-  </table>
+    <%= render partial: 'trpg_chat_body' %>
   </div>
   <% #右画面ここまで -%>
 </div>

@@ -1,10 +1,11 @@
 # -*- encoding : utf-8 -*-
 class TLogsController < ApplicationController
-  before_filter :find_t_session, only: ['index', 'create']
-  before_filter :find_current_player, only: ['index']
+  before_filter :find_t_session, only: ['index', 'create', 'said_player']
+  before_filter :find_current_player, only: ['index', 'said_player']
 
   def index
     @t_logs = TLog.where(t_session_id: params[:t_session_id])
+    @t_log = TLog.new
   end
 
   def new

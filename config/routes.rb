@@ -19,8 +19,9 @@ TrpgChat::Application.routes.draw do
   end
 
   #TRPGセッション配下
-  controller :t_sessions do
-    resources :t_logs, path: 't_sessions/:t_session_id/t_logs', :only => [:index, :new, :create, :show]
+  controller :t_logs do
+    resources :t_logs, path: 't_sessions/:t_session_id/t_logs', only: [:index, :new, :create, :show]
     post 't_session/:t_session_id/t_logs', action: :create
+    post 't_session/:t_session_id/t_logs/said_player', action: :said_player, as: :said_player
   end
 end
