@@ -37,13 +37,6 @@ ActiveRecord::Schema.define(:version => 20121224151408) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "dices", :force => true do |t|
-    t.integer  "t_log_id"
-    t.integer  "score"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "gms", :force => true do |t|
     t.integer  "user_id"
     t.integer  "t_sesstion_id"
