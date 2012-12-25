@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class TLogsController < ApplicationController
+  before_filter :authorize
   before_filter :find_t_session, only: ['index', 'create', 'said_player', 'dice_roll']
   before_filter :find_current_player, only: ['index', 'said_player', 'dice_roll']
   before_filter :find_t_logs
