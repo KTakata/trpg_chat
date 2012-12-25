@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-
 class TLogsController < ApplicationController
-  before_filter :find_t_session, only: ['index', 'create', 'said_player']
-  before_filter :find_current_player, only: ['index', 'said_player']
+  before_filter :find_t_session, only: ['index', 'create', 'said_player', 'dice_roll']
+  before_filter :find_current_player, only: ['index', 'said_player', 'dice_roll']
+  before_filter :find_t_logs
 
   def index
-    @t_logs = TLog.where(t_session_id: params[:t_session_id])
     @t_log = TLog.new
   end
 
@@ -22,7 +22,32 @@ class TLogsController < ApplicationController
     redirect_to t_logs_path(t_session_id: t_session.id)
   end
 
+  def dice_roll
+    many = params[:t_log][:many].to_i
+    d_type = params[:t_log][:d_type].to_i
+    num = 0
+    score = 0
+    body = []
+    #ダイスの各値と合計を計算
+    while num < many do
+      body << rand(d_type) + 1
+      score = body.last + score
+      num += 1
+    end
+    body = body.to_s
+    @t_log = TLog.new(owner_id: @current_player.id, many: many, d_type: d_type, body: body , score: score, log_type: 'dice', t_session_id: @t_session.id)
+    if  @t_log.save
+      render :index
+    else
+      render :index, notice: 'Can not roll dice'
+    end
+  end
+
   private
+
+  def find_t_logs
+    @t_logs = TLog.where(t_session_id: params[:t_session_id])
+  end
 
   def find_t_session
     @t_session = TSession.find_by_id(params[:t_session_id])

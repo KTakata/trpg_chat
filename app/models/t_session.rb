@@ -30,7 +30,6 @@ class TSession < ActiveRecord::Base
       t_log.save!
       players.where(player_status: 'join').order(:player_type).each_with_index do |player, no|
         player.character_id = no
-        #binding.pry
         Character.create!(player_id: player.id, chara_type: 'Player Character')
         player.save!
       end

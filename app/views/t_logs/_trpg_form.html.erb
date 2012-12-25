@@ -1,5 +1,5 @@
 <%= form_for @t_log, url: said_player_path(t_session_id: @t_session.id) do |f| %>
-  <%= f.label :body %> <%= f.text_area :body, size: "60x3" %>
+  <%= f.label :body %> <%= f.text_area :body, size: "60x3" , value: ""%>
 
   <%= f.submit "発言する"%>
 <% end %>
