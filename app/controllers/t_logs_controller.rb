@@ -27,7 +27,6 @@ class TLogsController < ApplicationController
   end
 
   def said_player
-    binding.pry
     @t_log = TLog.new(body: params[:t_log][:body], owner_id: @current_player.id)
   end
 
