@@ -13,13 +13,22 @@ class TLogsController < ApplicationController
 
   def create
     t_session = TSession.find_by_id(params[:t_session_id])
-    t_session_players = t_session.players.where(player_status: 'join')
-    t_session_players.each do |player|
-      raise 'Can not start TSession' if player.player_type.nil?
+    if params[:redirect] && params[:redirect] == 'to_index'
+      redirect_to t_logs_path(t_session_id: t_session.id)
+    else
+      t_session_players = t_session.players.where(player_status: 'join')
+      t_session_players.each do |player|
+        raise 'Can not start TSession' if player.player_type.nil?
+      end
+      #セッションのステータスを変更
+      t_session.first_create(params[:t_session_id])
+      redirect_to t_logs_path(t_session_id: t_session.id)
     end
-    #セッションのステータスを変更
-    t_session.first_create(params[:t_session_id])
-    redirect_to t_logs_path(t_session_id: t_session.id)
+  end
+
+  def said_player
+    binding.pry
+    @t_log = TLog.new(body: params[:t_log][:body], owner_id: @current_player.id)
   end
 
   def dice_roll

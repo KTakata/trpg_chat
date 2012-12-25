@@ -2,6 +2,8 @@
 <% if @current_player.character_id != 0 && !@current_player.character.name -%>
 <p>キャラクターの名前を設定してください<p>
 <% end -%>
+<div align="right"><%= button_to '更新する', {action: 'index', redirect: 'to_index'}%></div>
+
 <div id="floor">
   <% #左画面 -%>
   <div id="left-box">

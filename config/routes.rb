@@ -20,8 +20,7 @@ TrpgChat::Application.routes.draw do
 
   #TRPGセッション配下
   controller :t_logs do
-    resources :t_logs, path: 't_sessions/:t_session_id/t_logs', only: [:index, :new, :create, :show]
-    post 't_session/:t_session_id/t_logs', action: :create
+    resources :t_logs, path: 't_session/:t_session_id/t_logs', only: [:index, :new, :create, :show]
     post 't_session/:t_session_id/t_logs/said_player', action: :said_player, as: :said_player
     post 't_session/:t_session_id/t_logs/dice_roll', action: :dice_roll, as: :dice_roll
     put 't_session/:t_session_id/t_logs/dice_roll', action: :dice_roll, as: :dice_roll
