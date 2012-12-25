@@ -26,10 +26,11 @@ class TSession < ActiveRecord::Base
     transaction do
       self.t_session_status = "progress"
       self.save!
-      t_log = TLog.new(t_session_id: attribute, body: 'セッションを開始しました')
+      t_log = TLog.new(t_session_id: attribute, body: 'セッションを開始しました', log_type: 'first')
       t_log.save!
       players.where(player_status: 'join').order(:player_type).each_with_index do |player, no|
         player.character_id = no
+        #binding.pry
         Character.create!(player_id: player.id, chara_type: 'Player Character')
         player.save!
       end
