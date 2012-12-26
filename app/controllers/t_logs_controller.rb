@@ -4,17 +4,11 @@ class TLogsController < ApplicationController
   before_filter :find_t_session, only: ['index', 'create', 'said_player', 'dice_roll']
   before_filter :find_current_player, only: ['index', 'said_player', 'dice_roll']
   before_filter :find_t_logs
-  before_filter :find_game_master_player, only: ['index']
+  before_filter :find_game_master_player
+  before_filter :find_gm_characters
 
   def index
     @t_log = TLog.new
-    @npc_charas = Character.where(player_id: @gm.id, chara_type: 'NPC')
-    @gm_charas = Character.where(player_id: @gm.id)
-    @gm_chara_names = ['Game Master']
-    @gm_charas.each do |gm_chara|
-      @gm_chara_names << gm_chara.name if gm_chara.name
-    end
-    @gm_charas.shift
   end
 
   def new
@@ -36,7 +30,15 @@ class TLogsController < ApplicationController
   end
 
   def said_player
-    @t_log = TLog.new(body: params[:t_log][:body], owner_id: @current_player.id)
+    attribute = params[:t_log]
+    @t_log = TLog.new(body: params[:t_log][:body], owner_id: @current_player.id, t_session_id: params[:t_session_id], log_type: 'said')
+    @t_log.npc_chara_name = @current_player.player_type unless attribute[:npc_chara_name]
+    if @t_log.save
+      render :index
+    else
+      render :index, notice: 'You can not said'
+    end
+
   end
 
   def dice_roll
@@ -53,7 +55,7 @@ class TLogsController < ApplicationController
     end
     body = body.to_s
     @t_log = TLog.new(owner_id: @current_player.id, many: many, d_type: d_type, body: body , score: score, log_type: 'dice', t_session_id: @t_session.id)
-    if  @t_log.save
+    if @t_log.save
       render :index
     else
       render :index, notice: 'Can not roll dice'
@@ -79,4 +81,13 @@ class TLogsController < ApplicationController
     @gm = Player.find_by_t_session_id_and_player_type(@t_session.id, 'Game Master')
   end
 
+  def find_gm_characters
+    @npc_charas = Character.where(player_id: @gm.id, chara_type: 'NPC')
+    @gm_charas = Character.where(player_id: @gm.id)
+    @gm_chara_names = ['Game Master']
+    @gm_charas.each do |gm_chara|
+      @gm_chara_names << gm_chara.name if gm_chara.name
+    end
+    @gm_charas.shift
+  end
 end

@@ -7,10 +7,14 @@ module ApplicationHelper
       case log.log_type
       when 'said'
         #TODO:GMは○○として発言のロジックをくむ
-        body += "<tr><td>#{player.character.name}</td><td>#{log.body}</td></tr>"
+        if log.npc_chara_name == log.player.player_type
+          body += "<tr><td>#{log.npc_chara_name}</td><td>#{log.body}</td></tr>"
+        else
+          body += "<tr><td>#{log.player.player_type}<br/>(#{log.npc_chara_name})</td><td>#{log.body}</td></tr>"
+        end
       when 'dice'
         if log.player.player_type == 'Game Master' || log.player.character.name.nil?
-          body += "<tr><td >#{log.player.player_type}</td><td>#{log.d_type}D#{log.many}</td><td>=></td><td>ダイスの目:#{log.body}</td><td>計：#{log.score}</td></tr>"
+          body += "<tr><td>#{log.player.player_type}</td><td>#{log.d_type}D#{log.many}</td><td>=></td><td>ダイスの目:#{log.body}</td><td>計：#{log.score}</td></tr>"
         else
           body += "<tr><td>#{player.character.name}</td><td>ダイスの目：#{log.body}/合計：#{log.score}</td></tr>"
         end
