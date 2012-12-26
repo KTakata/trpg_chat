@@ -53,7 +53,7 @@
 <% end -%>
 
 <% #GMのみがセッションを開始できる %>
-<% if @current_player.try(:player_type) == 'Game Master' && @t_session.players.count >= 2 -%>
+<% if @current_player.try(:player_type) == 'Game Master' && @t_session.players.count >= 2 && @t_session.t_session_status == 'recruit' -%>
 <% #TODO: button_to => {action: 'new', controller: 't_logs'で行けないのか？ %>
   <% @t_session.players.each do |player| -%>
      <% @t_session_start_flag = false if player.player_type.nil? -%>
