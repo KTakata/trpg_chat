@@ -71,7 +71,7 @@
 <% end -%>
 
 <% if @t_session.t_session_status == "progress" -%>
-<%= link_to "セッションを始める", t_logs_path(t_session_id: @t_session.id) %>
+  <%= link_to "セッション進行部屋に進む", t_logs_path(t_session_id: @t_session.id) %>
 <% end -%>
 <%= link_to 'マイページに戻る', my_page_path %>
 <% #TODO:ログダウンロード(場所も考える) %>
