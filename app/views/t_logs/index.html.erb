@@ -9,6 +9,9 @@
   <div id="left-box">
     <%= render partial: 'trpg_form' %>
     <%= render partial: "roll_dice" %>
+    <% if @current_player.player_type == 'Game Master' %>
+      <%= render partial: 'create_npc' %>
+    <% end -%>
   </div>
   <% #左画面ここまで -%>
 
