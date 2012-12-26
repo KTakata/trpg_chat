@@ -8,9 +8,9 @@ module ApplicationHelper
       when 'said'
         #TODO:GMは○○として発言のロジックをくむ
         if log.npc_chara_name == log.player.player_type
-          body += "<tr><td>#{log.npc_chara_name}</td><td>#{log.body}</td></tr>"
+          body += "<tr><td>#{log.npc_chara_name}</td><td colspan='4'>#{log.body}</td></tr>"
         else
-          body += "<tr><td>#{log.player.player_type}<br/>(#{log.npc_chara_name})</td><td>#{log.body}</td></tr>"
+          body += "<tr><td>#{log.player.player_type}<br/>(#{log.npc_chara_name})</td><td colspan='4'>#{log.body}</td></tr>"
         end
       when 'dice'
         if log.player.player_type == 'Game Master' || log.player.character.name.nil?
@@ -21,7 +21,7 @@ module ApplicationHelper
       when 'move'
         #TODO:マップ移動処理
       when 'first'
-        body += "<tr><td colspan='2'>#{log.body}</td></tr>"
+        body += "<tr><td colspan='5'>#{log.body}</td></tr>"
       else
         raise 'unkown type error'
       end
