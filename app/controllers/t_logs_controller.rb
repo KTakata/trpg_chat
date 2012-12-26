@@ -4,9 +4,17 @@ class TLogsController < ApplicationController
   before_filter :find_t_session, only: ['index', 'create', 'said_player', 'dice_roll']
   before_filter :find_current_player, only: ['index', 'said_player', 'dice_roll']
   before_filter :find_t_logs
+  before_filter :find_game_master_player, only: ['index']
 
   def index
     @t_log = TLog.new
+    @npc_charas = Character.where(player_id: @gm.id, chara_type: 'NPC')
+    @gm_charas = Character.where(player_id: @gm.id)
+    @gm_chara_names = ['Game Master']
+    @gm_charas.each do |gm_chara|
+      @gm_chara_names << gm_chara.name if gm_chara.name
+    end
+    @gm_charas.shift
   end
 
   def new
@@ -66,4 +74,9 @@ class TLogsController < ApplicationController
   def find_current_player
     @current_player = Player.find_by_user_id_and_t_session_id(@current_user.id, @t_session.id)
   end
+
+  def find_game_master_player
+    @gm = Player.find_by_t_session_id_and_player_type(@t_session.id, 'Game Master')
+  end
+
 end
