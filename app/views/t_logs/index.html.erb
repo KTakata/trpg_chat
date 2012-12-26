@@ -11,6 +11,7 @@
     <%= render partial: "roll_dice" %>
     <% if @current_player.player_type == 'Game Master' %>
       <%= render partial: 'create_npc' %>
+      <%= render partial: 'show_npc_data' %>
     <% end -%>
   </div>
   <% #左画面ここまで -%>
