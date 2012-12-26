@@ -1,9 +1,13 @@
-<h3>ダイスロール</h3>
-<%= form_for @t_log, url: {action: 'dice_roll'} do |f| -%>
-<% type_of_dice = [4,6,8,10,12,20] %>
-<% num_of_dice = [1,2,3,4,5,6,7,8,9,10] %>
+<div id="action-box">
+  <p>
+    <h3>ダイスロール</h3>
+    <%= form_for @t_log, url: {action: 'dice_roll'} do |f| -%>
+      <% type_of_dice = [4,6,8,10,12,20] %>
+      <% num_of_dice = [1,2,3,4,5,6,7,8,9,10] %>
 
-  <%= f.select :d_type, type_of_dice -%>Dを<%= f.select :many, num_of_dice -%>個振る 
-    
-  <%= f.submit "サイコロを振る", action: :dice_roll %>
-<% end %>
+      <%= f.select :d_type, type_of_dice -%>Dを<%= f.select :many, num_of_dice -%>個振る 
+
+      <%= f.submit "サイコロを振る", action: :dice_roll %>
+    <% end %>
+  <p>
+</div>

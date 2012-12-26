@@ -20,7 +20,10 @@
   float: left;
   width: 45%;
   border-right: 2px solid #FF9900;
-  padding: 15px;
+}
+
+#action-box {
+  border-bottom: 1px solid #FF9900;
 }
 
 #right-box {

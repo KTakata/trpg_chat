@@ -1,12 +1,15 @@
-<%= form_for @t_log, url: said_player_path(t_session_id: @t_session.id) do |f| %>
-  <% if @current_player.player_type == 'Game Master' && (not @npc_charas.empty?) %>
-  	<%= f.select :npc_chara_name, @gm_chara_names %>として<br>
-  <% end %>
-  <%= f.text_area :body, size: "60x3" , value: ""%>
+<div id="action-box">
+  <p>
+    <%= form_for @t_log, url: said_player_path(t_session_id: @t_session.id) do |f| %>
+      <% if @current_player.player_type == 'Game Master' && (not @npc_charas.empty?) %>
+        <%= f.select :npc_chara_name, @gm_chara_names %>として<br>
+      <% end %>
+      <%= f.text_area :body, size: "60x3" , value: ""%>
 
-  <%= f.submit "発言する"%>
-<% end %>
-
+      <%= f.submit "発言する"%>
+    <% end %>
+  </p>
+</div>
 
 
 <%# = form_for @user, url: account_path, method: :put, html: { multipart: true } do |f| %>
