@@ -25,16 +25,16 @@ class TLogsController < ApplicationController
       end
       #セッションのステータスを変更
       t_session.first_create(params[:t_session_id])
-      redirect_to t_logs_path(t_session_id: t_session.id)
+      redirect_to t_logs_path(t_session_id: @t_session.id)
     end
   end
 
   def said_player
     attribute = params[:t_log]
-    @t_log = TLog.new(body: params[:t_log][:body], owner_id: @current_player.id, t_session_id: params[:t_session_id], log_type: 'said')
-    @t_log.npc_chara_name = @current_player.player_type unless attribute[:npc_chara_name]
+    @t_log = TLog.new(body: params[:t_log][:body], owner_id: @current_player.id, t_session_id: params[:t_session_id], log_type: 'said', npc_chara_name: attribute[:npc_chara_name])
+    @t_log.npc_chara_name = @current_player.player_type unless attribute[:npc_chara_name] #PC用
     if @t_log.save
-      render :index
+      redirect_to t_logs_path(t_session_id: @t_session.id)
     else
       render :index, notice: 'You can not said'
     end
