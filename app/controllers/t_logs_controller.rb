@@ -1,14 +1,14 @@
 # -*- encoding : utf-8 -*-
 class TLogsController < ApplicationController
+  before_filter :create_new
   before_filter :authorize
-  before_filter :find_t_session, only: ['index', 'create', 'said_player', 'dice_roll']
-  before_filter :find_current_player, only: ['index', 'said_player', 'dice_roll']
+  before_filter :find_t_session
+  before_filter :find_current_player
   before_filter :find_t_logs
   before_filter :find_game_master_player
   before_filter :find_gm_characters
 
   def index
-    @t_log = TLog.new
   end
 
   def new
@@ -62,7 +62,21 @@ class TLogsController < ApplicationController
     end
   end
 
+  def create_npc
+    chara = Character.create(name: params[:character][:name], player_id: @gm.id)
+    chara.chara_type = 'NPC'
+    if chara.save
+      render :index
+    else
+      render :index, notice: 'Can not create NPC'
+    end
+  end
+
   private
+  def create_new
+    @t_log = TLog.new
+    @chara = Character.new
+  end
 
   def find_t_logs
     @t_logs = TLog.where(t_session_id: params[:t_session_id])

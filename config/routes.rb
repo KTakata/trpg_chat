@@ -24,6 +24,8 @@ TrpgChat::Application.routes.draw do
     post 't_session/:t_session_id/t_logs/said_player', action: :said_player, as: :said_player
     post 't_session/:t_session_id/t_logs/dice_roll', action: :dice_roll, as: :dice_roll
     put 't_session/:t_session_id/t_logs/dice_roll', action: :dice_roll, as: :dice_roll
+    post 't_session/:t_session_id/t_logs/create_npc', action: :create_npc, as: :create_npc
+    put 't_session/:t_session_id/t_logs/create_npc', action: :create_npc, as: :create_npc
   end
   resources :battle_map, path: 't_sessions/:t_session_id/battle_map', only: [:index, :new, :create, :show]
 
