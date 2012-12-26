@@ -8,9 +8,12 @@
   <% #左画面 -%>
   <div id="left-box">
     <%= render partial: 'trpg_form' %>
+    <hr>
     <%= render partial: "roll_dice" %>
     <% if @current_player.player_type == 'Game Master' %>
+      <hr>
       <%= render partial: 'create_npc' %>
+      <hr>
       <%= render partial: 'show_npc_data' %>
     <% end -%>
   </div>

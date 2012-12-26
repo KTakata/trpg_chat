@@ -56,7 +56,7 @@ class TLogsController < ApplicationController
     body = body.to_s
     @t_log = TLog.new(owner_id: @current_player.id, many: many, d_type: d_type, body: body , score: score, log_type: 'dice', t_session_id: @t_session.id)
     if @t_log.save
-      render :index
+      redirect_to t_logs_path(t_session_id: @t_session.id)
     else
       render :index, notice: 'Can not roll dice'
     end

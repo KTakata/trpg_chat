@@ -1,3 +1,4 @@
+<h3>NPC作成</h3>
 <p>※ここで作成したNPCは戦闘に参加できます。</p>
 <%= form_for @chara , url: create_npc_path(t_session_id: @t_session.id) do |f| -%>
   NPC Name <%= f.text_field :name %>
