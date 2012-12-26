@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SessionsController < ApplicationController
   def new
   end
@@ -9,13 +10,12 @@ class SessionsController < ApplicationController
         redirect_to my_page_path
       end
     else
-      redirect_to login_url, :notice => "Invalid!"
+      redirect_to login_url, notice: "Invalid!"
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_url, :notice => "Logged out!"
+    redirect_to login_url, notice: "Logged out!"
   end
-
 end
