@@ -1,4 +1,5 @@
 TrpgChat::Application.routes.draw do
+  root :to => "sessions#create"
 
   controller :sessions do
     get 'login' => :new
