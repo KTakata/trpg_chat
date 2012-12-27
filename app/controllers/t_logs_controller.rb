@@ -72,6 +72,16 @@ class TLogsController < ApplicationController
     end
   end
 
+  def set_name
+    players_chara = Character.find_by_player_id(@current_player.id)
+    players_chara.name = params[:character][:name]
+    if players_chara.save && (not players_chara.name.nil?)
+      redirect_to t_logs_path(t_session_id: @t_session.id)
+    else
+      render :index, notice: 'Player name set is faild!!'
+    end
+  end
+
   private
   def create_new
     @t_log = TLog.new

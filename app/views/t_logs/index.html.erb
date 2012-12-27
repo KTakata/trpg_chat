@@ -1,6 +1,9 @@
 <h1>T Logs index</h1>
 <% if @current_player.player_type != 'Game Master' && !@current_player.character.name -%>
   <p>キャラクターの名前を設定してください<p>
+  <%= render partial: 'set_player_chara_name' %>
+<% else -%>
+  キャラクター名：<%= @current_player.character.name %>
 <% end -%>
 <div align="right"><%= button_to '更新する', {action: 'index', redirect: 'to_index'}%></div>
 

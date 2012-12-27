@@ -1,0 +1,4 @@
+<%= form_for @chara, url: set_name_path(t_session_id: @t_session.id) do |f| %>
+  <%= f.text_field :name , value: "" %>
+  <%= f.submit "プレイヤーの名前を決定する" %>
+<% end %>
