@@ -29,11 +29,10 @@ class TSession < ActiveRecord::Base
       t_log = TLog.new(t_session_id: attribute, body: 'セッションを開始しました', log_type: 'first')
       t_log.save!
       players.where(player_status: 'join').order(:player_type).each_with_index do |player, no|
-        player.character_id = no
-        Character.create!(player_id: player.id, chara_type: 'Player Character')
+        character = Character.create!(player_id: player.id, chara_type: 'Player Character')
+        player.character_id = character.id
         player.save!
       end
-
     end
     rescue => e
     flash[:error] = "Can not start trpg session" #TODO:flash実装
