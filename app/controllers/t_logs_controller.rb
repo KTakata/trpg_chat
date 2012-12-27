@@ -6,7 +6,7 @@ class TLogsController < ApplicationController
   before_filter :find_current_player
   before_filter :find_t_logs
   before_filter :find_game_master_player
-  before_filter :find_gm_characters
+  before_filter :find_characters
 
   def index
   end
@@ -112,7 +112,7 @@ class TLogsController < ApplicationController
     @gm = Player.find_by_t_session_id_and_player_type(@t_session.id, 'Game Master')
   end
 
-  def find_gm_characters
+  def find_characters
     @npc_charas = Character.where(player_id: @gm.id, chara_type: 'NPC')
     @gm_charas = Character.where(player_id: @gm.id)
     @gm_chara_names = ['Game Master']
@@ -120,5 +120,11 @@ class TLogsController < ApplicationController
       @gm_chara_names << gm_chara.name if gm_chara.name
     end
     @gm_charas.shift
+    players = Player.where(t_session_id: @t_session.id)
+    players.shift
+    @player_chars = []
+    players.each do |player|
+      @player_chars << player.character
+    end
   end
 end

@@ -1,0 +1,12 @@
+<div id="in-right-box">
+  <h3>&nbsp;&nbsp;Player Character一覧</h3>
+  <ul>
+  <% @player_chars.each do |pc_chara| -%>
+    <% if pc_chara.name -%>
+      <li><%= pc_chara.player.player_type %>：<%= pc_chara.name %></li>
+    <% else -%>
+      <li><%= pc_chara.player.player_type %>：未決定 </li>
+    <% end -%>
+  <% end -%>
+  </ul>
+</div>
