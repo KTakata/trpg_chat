@@ -6,18 +6,17 @@ module ApplicationHelper
     logs.each do |log|
       case log.log_type
       when 'said'
-        #TODO:GMは○○として発言のロジックをくむ
-        if log.npc_chara_name == log.player.player_type
+        if log.npc_chara_name == 'Game Master' #GM
           body += "<tr><td>#{log.npc_chara_name}</td><td colspan='4'>#{log.body}</td></tr>"
+        elsif log.npc_chara_name == log.player.player_type && log.player.character.name.nil?#player no chara name
+          body += "<tr><td>#{log.player.player_type}</td><td colspan='4'>#{log.body}</td></tr>"
+        elsif log.npc_chara_name == log.player.player_type #player character has name
+          body += "<tr><td>#{log.player.character.name}</td><td colspan='4'>#{log.body}</td></tr>"
         else
           body += "<tr><td>#{log.player.player_type}<br/>(#{log.npc_chara_name})</td><td colspan='4'>#{log.body}</td></tr>"
         end
       when 'dice'
-        if log.player.player_type == 'Game Master' || log.player.character.name.nil?
-          body += "<tr><td>#{log.player.player_type}</td><td>#{log.d_type}D#{log.many}</td><td>=></td><td>ダイスの目:#{log.body}</td><td>計：#{log.score}</td></tr>"
-        else
-          body += "<tr><td>#{player.character.name}</td><td>ダイスの目：#{log.body}/合計：#{log.score}</td></tr>"
-        end
+        body += "<tr><td>#{log.player.player_type}</td><td>#{log.d_type}D#{log.many}</td><td>=></td><td>ダイスの目:#{log.body}</td><td>計：#{log.score}</td></tr>"
       when 'move'
         #TODO:マップ移動処理
       when 'first'
