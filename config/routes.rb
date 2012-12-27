@@ -9,7 +9,7 @@ TrpgChat::Application.routes.draw do
 
   controller :new_users do
     resources :new_users, :only => [:new, :show]
-    post 'user', action: :create
+    post 'users', action: :create
   end
 
   get "my_page" => "my_page#index"

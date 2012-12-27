@@ -49,8 +49,8 @@ class TSessionsController < ApplicationController
 
   #ここではセッションに参加希望するユーザーを設定する
   def join_request
-    Player.create!(user_id: @current_user.id, t_session_id: @t_session.id, player_status: 'rsvp') unless @player
-    if @player.player_status == nil
+    Player.create!(user_id: @current_user.id, t_session_id: @t_session.id, player_status: 'rsvp') if @player.nil?
+    if @player && @player.player_status == nil
       @player.player_status = 'rsvp'
       @player.save!
     end

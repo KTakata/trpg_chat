@@ -23,7 +23,7 @@
         未決定
       <% end -%>
     </td>
-    <% if @current_player.player_type == 'Game Master' && player != @current_player -%>
+    <% if @current_player && @current_player.player_type == 'Game Master' && player != @current_player -%>
     <td>
       <% @total_playes.each do |player_number| -%>
         <% if @join_players_no.select{|x| x == player_number.to_s}.empty? -%>
