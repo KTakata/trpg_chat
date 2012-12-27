@@ -7,6 +7,11 @@ TrpgChat::Application.routes.draw do
     delete 'logout' => :destroy
   end
 
+  controller :new_users do
+    resources :new_users, :only => [:new, :show]
+    post 'user', action: :create
+  end
+
   get "my_page" => "my_page#index"
 
   controller :t_sessions do

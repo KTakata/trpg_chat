@@ -1,0 +1,21 @@
+ユーザーを登録しました
+<table>
+<tr>
+  <td>名前</td>
+  <td><%= @user.name %></td>
+</tr>
+<tr>
+  <td>ニックネーム</td>
+  <td><%= @user.nick_name %></td>
+</tr>
+<tr>
+  <td>メールアドレス</td>
+  <td><%= @user.email %></td>
+</tr>
+<tr>
+  <td>パスワード</td>
+  <td><%= @user.password %></td>
+</tr>
+</table>
+
+<%= link_to 'トップページに戻る', login_path %>
