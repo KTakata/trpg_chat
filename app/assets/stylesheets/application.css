@@ -22,14 +22,34 @@
   border-right: 2px solid #FF9900;
 }
 
+#form-box {
+  border-bottom: 1px solid #FF9900;
+  height: 100px;
+}
+
 #action-box {
   border-bottom: 1px solid #FF9900;
+  height: 200px;
 }
 
 #right-box {
   float: right;
-/*  background-color: #FF9900;*/
   width: 51%;
-  padding: 5px;
-/*  margin: 5px;*/
+}
+
+#in-right-box {
+  border-left: 1px solid #FF9900;
+  float: right;
+  height: 200px;
+  width: 51%;
+}
+
+#in-left-box {
+  float: left;
+  width: 45%;
+}
+
+#show-npc-box {
+  border-bottom: 1px solid #FF9900;
+  height: 140px;
 }

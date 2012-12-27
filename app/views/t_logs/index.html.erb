@@ -2,17 +2,23 @@
 <% if @current_player.player_type != 'Game Master' && !@current_player.character.name -%>
   <p>キャラクターの名前を設定してください<p>
   <%= render partial: 'set_player_chara_name' %>
-<% else -%>
+<% elsif @current_player.player_type != 'Game Master' -%>
   キャラクター名：<%= @current_player.character.name %>
+<% else -%>
 <% end -%>
+
 <div align="right"><%= button_to '更新する', {action: 'index', redirect: 'to_index'}%></div>
 
 <div id="floor">
   <% #左画面 -%>
   <div id="left-box">
     <%= render partial: 'trpg_form' %>
-    <%= render partial: "roll_dice" %>
-    <% if @current_player.player_type == 'Game Master' %>
+
+    <div id="action-box">
+      <%= render partial: "roll_dice" %>
+    </div>
+
+    <% if @current_player.player_type == 'Game Master' -%>
       <%= render partial: 'create_npc' %>
       <%= render partial: 'show_npc_data' %>
     <% end -%>
