@@ -10,12 +10,22 @@ gem 'bcrypt-ruby'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :development do
+group :test, :development do
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-nav'
   gem 'pry-coolline'
   gem 'pry-remote'
+  gem 'rails_best_practices'
+
+  # test
+  gem "rspec-rails"
+  gem "capybara"
+  gem 'launchy'
+  gem 'turn', '0.8.2', :require => false   # Pretty printed test output
+  gem "factory_girl_rails", :require => false
+  gem 'guard-rspec'
+  gem 'guard-spork'
 end
 
 group :assets do
