@@ -89,14 +89,8 @@ class TLogsController < ApplicationController
   end
 
   def find_t_logs
-    @t_logs = TLog.where(t_session_id: params[:t_session_id])
-    log_count = @t_logs.count
-    if log_count > 20
-      @show_logs = @t_logs[(log_count - 20), 20]
-    else
-      @show_logs = @t_logs
-    end
-    @show_logs.reverse!
+    @t_logs = TLog.where(t_session_id: params[:t_session_id]).order("created_at DESC")
+    @show_logs = @t_logs.order("created_at DESC")
   end
 
   def find_t_session
