@@ -43,6 +43,7 @@ GEM
       xpath (~> 1.0.0)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
+    cocaine (0.4.2)
     code_analyzer (0.3.1)
       sexp_processor
     coderay (1.0.8)
@@ -100,6 +101,12 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     nokogiri (1.5.6)
+    paperclip (3.4.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.4.0)
+      mime-types
     polyglot (0.3.3)
     progressbar (0.12.0)
     pry (0.9.10)
@@ -214,6 +221,7 @@ DEPENDENCIES
   guard-spork
   jquery-rails
   launchy
+  paperclip
   pry-coolline
   pry-doc
   pry-nav
