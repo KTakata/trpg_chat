@@ -34,6 +34,8 @@ TrpgChat::Application.routes.draw do
     put 't_session/:t_session_id/t_logs/create_npc', action: :create_npc, as: :create_npc
     post 't_session/:t_session_id/t_logs/set_name', action: :set_name, as: :set_name
     put 't_session/:t_session_id/t_logs/set_name', action: :set_name, as: :set_name
+    post 't_session/:t_session_id/t_logs/character', action: :character, as: :character
+    put 't_session/:t_session_id/t_logs/character', action: :character, as: :character
   end
   resources :battle_map, path: 't_sessions/:t_session_id/battle_map', only: [:index, :new, :create, :show]
 

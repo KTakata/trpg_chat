@@ -1,4 +1,13 @@
 <h1>T Logs index</h1>
+
+<% if @current_character -%>
+    <%= form_for @current_character, url: {action: 'character'},html: {multipart: true } do |f| -%>
+    <%= f.file_field :character_sheet %>
+    <%= f.submit 'シートを投稿する' %>
+  <% end %>
+<% end %>
+
+
 <% if @current_player.player_type != 'Game Master' && !@current_player.character.name -%>
   <p>キャラクターの名前を設定してください<p>
   <%= render partial: 'set_player_chara_name' %>

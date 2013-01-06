@@ -82,6 +82,14 @@ class TLogsController < ApplicationController
     end
   end
 
+  def character
+    if @current_character.update_attributes(params[:character])
+      redirect_to t_logs_path(t_session_id: @t_session.id)
+    else
+      render :index, notice: 'Character Sheet Upload is faild!!'
+    end
+  end
+
   private
   def create_new
     @t_log = TLog.new
@@ -119,6 +127,9 @@ class TLogsController < ApplicationController
     @player_chars = []
     players.each do |player|
       @player_chars << player.character
+    end
+    unless @current_player.player_type == 'Game Master'
+      @current_character = Character.find_by_player_id(@current_player.id)
     end
   end
 end
