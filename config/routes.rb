@@ -36,6 +36,7 @@ TrpgChat::Application.routes.draw do
     put 't_session/:t_session_id/t_logs/set_name', action: :set_name, as: :set_name
     post 't_session/:t_session_id/t_logs/character', action: :character, as: :character
     put 't_session/:t_session_id/t_logs/character', action: :character, as: :character
+    get 't_session/:t_session_id/t_logs/:character_id/character_sheet', action: :character_sheet, as: :character_sheet
   end
   resources :battle_map, path: 't_sessions/:t_session_id/battle_map', only: [:index, :new, :create, :show]
 

@@ -1,0 +1,5 @@
+<h1>キャラクターシート詳細</h1>
+name:<%= @show_sheet_chara.name %>
+<p><%= image_tag @show_sheet_chara.character_sheet.url %></p>
+
+<%= link_to 'セッションページに戻る', t_logs_path(t_session_id: @t_session.id) %>

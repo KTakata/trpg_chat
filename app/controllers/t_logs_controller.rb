@@ -90,6 +90,10 @@ class TLogsController < ApplicationController
     end
   end
 
+  def character_sheet
+    @show_sheet_chara = Character.find_by_id(params[:character_id])
+  end
+
   private
   def create_new
     @t_log = TLog.new
