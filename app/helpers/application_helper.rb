@@ -16,7 +16,7 @@ module ApplicationHelper
           body += "<tr><td>#{log.player.player_type}<br/>(#{log.npc_chara_name})</td><td colspan='4'>#{log.body}</td></tr>"
         end
       when 'dice'
-        body += "<tr><td>#{log.player.player_type}</td><td>#{log.d_type}D#{log.many}</td><td>=></td><td>ダイスの目:#{log.body}</td><td>計：#{log.score}</td></tr>"
+        body += "<tr><td>#{log.player.player_type}</td><td>#{log.many}D#{log.d_type}</td><td>=></td><td>ダイスの目:#{log.body}</td><td>計：#{log.score}</td></tr>"
       when 'move'
         #TODO:マップ移動処理
       when 'first'

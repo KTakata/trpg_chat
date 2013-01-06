@@ -5,7 +5,7 @@
       <% type_of_dice = [4,6,8,10,12,20] %>
       <% num_of_dice = [1,2,3,4,5,6,7,8,9,10] %>
 
-      <%= f.select :d_type, type_of_dice -%>Dを<%= f.select :many, num_of_dice -%>個振る 
+      D<%= f.select :d_type, type_of_dice -%>を<%= f.select :many, num_of_dice -%>個振る 
 
       <%= f.submit "サイコロを振る", action: :dice_roll %>
     <% end %>
