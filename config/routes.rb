@@ -39,6 +39,6 @@ TrpgChat::Application.routes.draw do
     get 't_session/:t_session_id/t_logs/:character_id/character_sheet', action: :character_sheet, as: :character_sheet
     post 't_session/:t_session_id/t_logs/create_map', action: :create_map, as: :create_map
   end
-  resources :battle_map, path: 't_sessions/:t_session_id/battle_map', only: [:index, :new, :create, :show]
+  resources :battle_maps, path: 't_sessions/:t_session_id/battle_map', only: [:index, :new, :create, :show]
 
 end
