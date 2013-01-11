@@ -98,6 +98,7 @@ class TLogsController < ApplicationController
   def create_new
     @t_log = TLog.new
     @chara = Character.new
+    @battle_map = BattleMap.new
   end
 
   def find_t_logs

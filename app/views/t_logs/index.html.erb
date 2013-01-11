@@ -27,6 +27,7 @@
       <%= render partial: "players_status" %>
       <%= render partial: "roll_dice" %>
     </div>
+      <%= render partial: 'create_map' %>
 
     <% if @current_player.player_type == 'Game Master' -%>
       <%= render partial: 'create_npc' %>
