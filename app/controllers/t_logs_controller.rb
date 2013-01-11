@@ -94,6 +94,19 @@ class TLogsController < ApplicationController
     @show_sheet_chara = Character.find_by_id(params[:character_id])
   end
 
+  def create_map
+    if params[:map_ss] #TODO:実装（マップも画像登録できるように）
+    else
+      bm = BattleMap.new(params[:battle_map])
+      bm.t_session_id = params[:t_session_id]
+      if bm.save
+        redirect_to t_logs_path(t_session_id: @t_session.id)
+      else
+       render :index, notice: 'Can not create Maps!!'
+      end
+    end
+  end
+
   private
   def create_new
     @t_log = TLog.new
