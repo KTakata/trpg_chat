@@ -1,12 +1,12 @@
-<h3> マップ作成 </h3>
-<div id="form-box">
+<div id="in-right-box">
+<h3>&nbsp;&nbsp;マップ作成 </h3>
   <p>
   <%= form_for @battle_map, url: create_map_path(t_session_id: @t_session.id) do |f| %>
   <% map_s = [4,5,6,7,8,9,10] %>
   <% map_m = [1,2,3,4,5,6,7,8,9,10] %>
   マップ名<%= f.text_field :name %><br/>
     １マスが<%= f.select :size, map_m -%>Mの<br/>
-    <%= f.select :size_h, map_s -%>x<%= f.select :size_w, map_s -%>のマップを作成する
+    <%= f.select :size_h, map_s -%>x<%= f.select :size_w, map_s -%>のマップを作成する<br/>
     <%= f.submit "map作成"%>
   <% end %>
   </p>

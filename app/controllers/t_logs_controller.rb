@@ -6,6 +6,7 @@ class TLogsController < ApplicationController
   before_filter :find_players
   before_filter :find_t_logs
   before_filter :find_characters
+  before_filter :find_maps
 
   def index
   end
@@ -146,4 +147,9 @@ class TLogsController < ApplicationController
       @current_character = Character.find_by_player_id(@current_player.id)
     end
   end
+
+  def find_maps
+    @maps = BattleMap.where(t_session_id: @t_session.id)
+  end
+
 end

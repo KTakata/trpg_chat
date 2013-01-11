@@ -24,10 +24,16 @@
     <%= render partial: 'trpg_form' %>
 
     <div id="action-box">
-      <%= render partial: "players_status" %>
       <%= render partial: "roll_dice" %>
+      <%= render partial: "players_status" %>
     </div>
-      <%= render partial: 'create_map' %>
+    <% if @current_player.player_type == 'Game Master' -%>
+      <div id="action-box">
+        <%= render partial: 'create_map' %>
+        <%= render partial: 'show_map' %>
+      </div>
+    <% else %>
+    <% end %>
 
     <% if @current_player.player_type == 'Game Master' -%>
       <%= render partial: 'create_npc' %>
