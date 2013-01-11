@@ -1,6 +1,6 @@
 <div id="in-left-box">
 <h3>Map一覧</h3>
   <% @maps.each do |map| %>
-    <li><%= map.name %></li>
+    <li><%= link_to map.name, battle_map_path(t_session_id: @t_session.id, id: map.id) %></li>
   <% end %>
 </div>

@@ -1,1 +1,15 @@
 <h1>マップ</h1>
+マップ名
+<%= @map.name %>
+<table border=2>
+<% while @h_count <= @map.size_h %>
+<tr height="25px">
+  <% @w_count = 1 %>
+  <% while @w_count <= @map.size_w %>
+  <td width="25px">&nbsp;</td>
+  <% @w_count += 1 %>
+  <% end %>
+</tr>
+<% @h_count += 1 %>
+<% end %>
+</table>
