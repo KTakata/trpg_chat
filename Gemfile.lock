@@ -107,6 +107,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.4.0)
       mime-types
+    pg (0.14.1)
     polyglot (0.3.3)
     progressbar (0.12.0)
     pry (0.9.10)
@@ -222,6 +223,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   paperclip
+  pg
   pry-coolline
   pry-doc
   pry-nav
