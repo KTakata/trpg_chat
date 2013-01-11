@@ -3,9 +3,8 @@ class TLogsController < ApplicationController
   before_filter :create_new
   before_filter :authorize
   before_filter :find_t_session
-  before_filter :find_current_player
+  before_filter :find_players
   before_filter :find_t_logs
-  before_filter :find_game_master_player
   before_filter :find_characters
 
   def index
@@ -124,11 +123,8 @@ class TLogsController < ApplicationController
     raise 'Unknown TSession' unless @t_session
   end
 
-  def find_current_player
+  def find_players
     @current_player = Player.find_by_user_id_and_t_session_id(@current_user.id, @t_session.id)
-  end
-
-  def find_game_master_player
     @gm = Player.find_by_t_session_id_and_player_type(@t_session.id, 'Game Master')
   end
 
