@@ -23,7 +23,7 @@
         未決定
       <% end -%>
     </td>
-    <% if @current_player && @current_player.player_type == 'Game Master' && player != @current_player -%>
+    <% if @current_player && @current_player.player_type == 'Game Master' && player != @current_player && @t_session.t_session_status == 'recruit' -%>
     <td>
       <% @total_playes.each do |player_number| -%>
         <% if @join_players_no.select{|x| x == player_number.to_s}.empty? -%>
@@ -64,7 +64,7 @@
 <% end -%>
 
 <% #GMのみがプレイヤーを選択できる %>
-<% if @current_player.try(:player_type) == 'Game Master' -%>
+<% if @current_player.try(:player_type) == 'Game Master' && @t_session.t_session_status == 'recruit' -%>
   <%= render partial: 'select_player' %>
 
   <%# link_to 'セッションを削除する', t_session_path, method: :delete %>
