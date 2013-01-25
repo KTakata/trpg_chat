@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20130125150815) do
     t.string   "name"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "size"
   end
 
   create_table "character_places", :force => true do |t|
