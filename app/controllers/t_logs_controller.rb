@@ -119,8 +119,8 @@ class TLogsController < ApplicationController
   end
 
   def find_characters
-    @npc_charas = Character.where(player_id: @gm.id.to_s, chara_type: 'NPC')
-    @gm_charas = Character.where(player_id: @gm.id.to_s)
+    @npc_charas = Character.where(player_id: @gm.id, chara_type: 'NPC')
+    @gm_charas = Character.where(player_id: @gm.id)
     @gm_chara_names = ['Game Master']
     @gm_charas.each do |gm_chara|
       @gm_chara_names << gm_chara.name if gm_chara.name
