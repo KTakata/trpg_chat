@@ -66,7 +66,7 @@ class TLogsController < ApplicationController
     chara = Character.create(name: params[:character][:name], player_id: @gm.id)
     chara.chara_type = 'NPC'
     if chara.save
-      render :index
+      redirect_to t_logs_path(t_session_id: @t_session.id)
     else
       render :index, notice: 'Can not create NPC'
     end
