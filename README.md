@@ -2,7 +2,7 @@
 
 ## About
  * このアプリはTRPGのチャットが出来るアプリです。
- * 現在ββ版としてherokuで公開しています。[TrpgChat](http://trpgtesttools.herokuapp.com/login)
+ * 現在ββ版としてherokuで公開しています。[TrpgChat](http://trpgtesttools.herokuapp.com/)
  * ただのチャットルームとしても活用できますので、お気軽にアクセスください。
 
  ### Notes
