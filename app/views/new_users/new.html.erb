@@ -1,5 +1,13 @@
 <h1>ユーザー登録</h1>
 <%= form_for @user do |f| %>
+<% if @user.errors.any? %>
+  <p>入力フォームに<%= @user.errors.count %>箇所の誤りがあります。ご確認下さい。<p>
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
 <table>
   <tr><td><%= f.label :name %></td><td><%= f.text_field :name %></td></tr>
   <tr><td><%= f.label :nick_name %></td><td><%= f.text_field :nick_name %></td></tr>
