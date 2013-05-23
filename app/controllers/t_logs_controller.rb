@@ -101,8 +101,9 @@ class TLogsController < ApplicationController
   end
 
   def find_t_logs
-    @t_logs = TLog.where(t_session_id: params[:t_session_id]).order("created_at DESC")
-    @show_logs = @t_logs.order("created_at DESC")
+    @t_logs = TLog.where(t_session_id: params[:t_session_id]).order("created_at ASC")
+    #表示するログは最大100件
+    @show_logs = @t_logs.limit(100)
   end
 
   def find_t_session
